@@ -99,7 +99,7 @@ class TestAuthService(unittest.TestCase):
         AuthService.create_user("dupuser", "pass123", UserRole.EMPLOYEE.value)
         ok, msg = AuthService.create_user("dupuser", "pass456", UserRole.EMPLOYEE.value)
         self.assertFalse(ok)
-        self.assertIn("already", msg.lower())
+        self.assertIn("already", msg.lower())  # Check for error message
 
     def test_get_all_users_returns_list(self):
         users = AuthService.get_all_users()

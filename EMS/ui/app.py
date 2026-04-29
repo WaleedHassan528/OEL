@@ -117,8 +117,14 @@ class MainApp(ctk.CTk):
     def _show_login(self):
         for w in self.winfo_children():
             w.destroy()
+        
+        # Ensure grid config is clean
+        self.grid_columnconfigure(0, weight=1)
+        self.grid_columnconfigure(1, weight=0)
+        self.grid_rowconfigure(0, weight=1)
+        
         login = LoginScreen(self, on_login_success=self._show_main)
-        login.pack(fill="both", expand=True)
+        login.grid(row=0, column=0, columnspan=2, sticky="nsew")
 
     def _show_main(self):
         for w in self.winfo_children():

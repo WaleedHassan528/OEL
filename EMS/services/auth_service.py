@@ -41,6 +41,9 @@ class AuthService:
             user.last_login = datetime.utcnow()
             session.commit()
 
+            # Refresh to load attributes after commit expiration
+            session.refresh(user)
+
             # Detach from session for use outside context
             session.expunge(user)
             cls._current_user = user
